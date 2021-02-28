@@ -2,7 +2,7 @@ package configs
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/inact25/Golang-Basic-CRUD/utils/environtment"
+	"github.com/inact25/userbe/utils/environtment"
 	"log"
 	"net/http"
 )

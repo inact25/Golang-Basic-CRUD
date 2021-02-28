@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"github.com/inact25/Golang-Basic-CRUD/utils/environtment"
+	"github.com/inact25/userbe/utils/environtment"
 )
 
 type dbConf struct {

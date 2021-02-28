@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/github.com/inact25/Golang-Basic-CRUD.iml" filepath="$PROJECT_DIR$/github.com/inact25/Golang-Basic-CRUD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userbe.iml" filepath="$PROJECT_DIR$/userbe.iml" />
     </modules>
   </component>
 </project>

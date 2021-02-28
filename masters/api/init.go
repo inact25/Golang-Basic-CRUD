@@ -3,9 +3,9 @@ package api
 import (
 	"database/sql"
 	"github.com/gorilla/mux"
-	"github.com/inact25/Golang-Basic-CRUD/masters/api/controllers"
-	"github.com/inact25/Golang-Basic-CRUD/masters/api/repositories"
-	"github.com/inact25/Golang-Basic-CRUD/masters/api/usecases"
+	"github.com/inact25/userbe/masters/api/controllers"
+	"github.com/inact25/userbe/masters/api/repositories"
+	"github.com/inact25/userbe/masters/api/usecases"
 )
 
 func Init(r *mux.Router, db *sql.DB) {

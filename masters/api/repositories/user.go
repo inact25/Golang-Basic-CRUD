@@ -2,8 +2,8 @@ package repositories
 
 import (
 	"database/sql"
-	"github.com/inact25/Golang-Basic-CRUD/masters/api/models"
-	"github.com/inact25/Golang-Basic-CRUD/utils/queryDict"
+	"github.com/inact25/userbe/masters/api/models"
+	"github.com/inact25/userbe/utils/queryDict"
 )
 
 type UserRepoImpl struct {
@@ -19,7 +19,7 @@ func (u UserRepoImpl) GetAllUser() ([]*models.User, error) {
 	}
 	for data.Next() {
 		users := models.User{}
-		err := data.Scan(&users.UserID, &users.UserFirstName, &users.UserLastName, &users.UserAddress)
+		err := data.Scan(&users.IdentityID, &users.UserName, &users.UserBirth, &users.UserJob, &users.UserEducation)
 		if err != nil {
 			return nil, err
 		}
@@ -31,13 +31,13 @@ func (u UserRepoImpl) GetAllUser() ([]*models.User, error) {
 func (u UserRepoImpl) GetSpecificUser(user *models.User) (users []*models.User, err error) {
 	var dataUsers []*models.User
 	query := queryDict.GETSPECIFICUSER
-	data, err := u.db.Query(query, user.UserFirstName)
+	data, err := u.db.Query(query, user.IdentityID)
 	if err != nil {
 		return nil, err
 	}
 	for data.Next() {
 		users := models.User{}
-		err := data.Scan(&users.UserID, &users.UserFirstName, &users.UserLastName, &users.UserAddress)
+		err := data.Scan(&users.IdentityID, &users.UserName, &users.UserBirth, &users.UserJob, &users.UserEducation)
 		if err != nil {
 			return nil, err
 		}
@@ -57,7 +57,7 @@ func (u UserRepoImpl) AddNewUser(user *models.User) (string, error) {
 		return "", err
 	}
 	defer addUser.Close()
-	if _, err := addUser.Exec(user.UserID, user.UserFirstName, user.UserLastName, user.UserAddress); err != nil {
+	if _, err := addUser.Exec(user.IdentityID, user.UserName, user.UserBirth, user.UserJob, user.UserEducation); err != nil {
 		tx.Rollback()
 		return "", err
 	}
@@ -75,25 +75,7 @@ func (u UserRepoImpl) UpdateUser(user *models.User) (string, error) {
 		return "", err
 	}
 	defer putUser.Close()
-	if _, err := putUser.Exec(user.UserFirstName, user.UserLastName, user.UserAddress, user.UserID); err != nil {
-		tx.Rollback()
-		return "", err
-	}
-	return "", tx.Commit()
-}
-
-func (u UserRepoImpl) DeleteUser(user *models.User) (string, error) {
-	tx, err := u.db.Begin()
-	if err != nil {
-		return "", err
-	}
-	putCategories, err := u.db.Prepare(queryDict.DELETEUSER)
-	if err != nil {
-		tx.Rollback()
-		return "", err
-	}
-	defer putCategories.Close()
-	if _, err := putCategories.Exec(user.UserID); err != nil {
+	if _, err := putUser.Exec(user.UserName, user.UserBirth, user.UserJob, user.UserEducation); err != nil {
 		tx.Rollback()
 		return "", err
 	}

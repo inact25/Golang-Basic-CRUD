@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/inact25/Golang-Basic-CRUD/configs"
-	"github.com/inact25/Golang-Basic-CRUD/masters/api"
-	"github.com/inact25/Golang-Basic-CRUD/utils"
+	"github.com/inact25/userbe/configs"
+	"github.com/inact25/userbe/masters/api"
+	"github.com/inact25/userbe/utils"
 )
 
 func main() {
